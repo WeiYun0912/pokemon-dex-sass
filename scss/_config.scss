@@ -1,0 +1,85 @@
+//basic color
+$color-blue: #007bff;
+$color-indigo: #6610f2;
+$color-purple: #6f42c1;
+$color-pink: #e83e8c;
+$color-current: #fb6989;
+$color-red: #dc3545;
+$color-orange: #fd7e14;
+$color-yellow: #ffc107;
+$color-green: #28a745;
+$color-teal: #20c997;
+$color-cyan: #17a2b8;
+$color-white: #fff;
+$color-gray: #6c757d;
+$color-gray-dark: #343a40;
+$color-primary: #007bff;
+$color-secondary: #6c757d;
+$color-success: #28a745;
+$color-info: #17a2b8;
+$color-warning: #ffc107;
+$color-danger: #dc3545;
+$color-light: #f8f9fa;
+$color-dark: #343a40;
+
+//pokemon type color
+$type-normal: #a8a77a;
+$type-fire: #ee8130;
+$type-water: #6390f0;
+$type-electric: #f7d02c;
+$type-grass: #7ac74c;
+$type-ice: #96d9d6;
+$type-fighting: #c22e28;
+$type-poison: #a33ea1;
+$type-ground: #e2bf65;
+$type-flying: #a98ff3;
+$type-psychic: #f95587;
+$type-bug: #a6b91a;
+$type-rock: #b6a136;
+$type-ghost: #735797;
+$type-dragon: #6f35fc;
+$type-dark: #705746;
+$type-steel: #b7b7ce;
+$type-fairy: #d685ad;
+
+//init pokemon type label
+$type_color: (
+  normal: $type-normal,
+  fire: $type-fire,
+  water: $type-water,
+  electric: $type-electric,
+  grass: $type-grass,
+  ice: $type-ice,
+  fighting: $type-fighting,
+  poison: $type-poison,
+  ground: $type-ground,
+  flying: $type-flying,
+  psychic: $type-psychic,
+  bug: $type-bug,
+  rock: $type-rock,
+  ghost: $type-ghost,
+  dragon: $type-dragon,
+  dark: $type-dark,
+  steel: $type-steel,
+  fairy: $type-fairy
+);
+
+//grid size
+$grid-column: 120px;
+$grid-row: 100px;
+
+//mixin
+@mixin background-opacity($color, $alpha) {
+  background-color: rgba($color, $alpha);
+}
+
+//each every type they own unique color
+@each $name, $value in $type_color {
+  .#{$name} {
+    background-color: $value;
+    &:hover {
+      @include background-opacity($value, 0.9);
+      cursor: pointer;
+    }
+  }
+}

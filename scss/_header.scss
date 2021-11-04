@@ -1,0 +1,88 @@
+.ouside-header {
+  background-color: $color-danger;
+  min-width: 72rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  //   height: 3.125rem;
+  //   padding: 0.5rem;
+}
+
+.inside-header {
+  display: flex;
+  justify-content: space-around;
+  min-width: 72rem;
+
+  .main-title {
+    display: inherit;
+  }
+  .pokeball-icon {
+    margin: 3px 3px 0px 0px;
+  }
+  .header-title {
+    color: $color-white;
+    font-size: 2rem;
+  }
+
+  ul.list-link {
+    list-style: none;
+    width: $grid-column * 3;
+    align-items: center;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    li {
+      display: inline-block;
+      height: 100%;
+      padding: 10px;
+      transition: all 0.3s;
+
+      &.current {
+        background-color: $color-current;
+      }
+      &:hover {
+        // background-color: $color-cyan;
+        @include background-opacity($color-current, 0.9);
+        cursor: pointer;
+      }
+    }
+
+    li > a {
+      color: $color-white;
+      text-decoration: none;
+    }
+  }
+
+  .right-search {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 2rem;
+    align-self: center;
+    .input-search {
+      width: 250px;
+      outline: none;
+      border: none;
+      border-radius: 3px;
+      height: 30px;
+      text-indent: 10px;
+    }
+    .btn-search {
+      width: 100px;
+      background-color: $color-current;
+      color: $color-white;
+      border-radius: 3px;
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        @include background-opacity($color-pink, 0.8);
+      }
+    }
+  }
+}

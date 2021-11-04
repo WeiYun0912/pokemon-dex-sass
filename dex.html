@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/pokeindex.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i,900,900i&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/w3.css" />
+    <title>Wei's PokemonDex</title>
+  </head>
+  <body>
+    <!-- nav search bar -->
+    <div class="ouside-header">
+      <div class="inside-header">
+        <div class="main-title">
+          <div class="pokeball-icon"><img src="img/pokeball.png" /></div>
+          <div class="header-title">PokeDex</div>
+        </div>
+        <ul class="list-link">
+          <li><a href="index.html">Home</a></li>
+          <li class="current"><a href="dex.html">Dex</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+
+        <div class="right-search">
+          <input
+            type="text"
+            class="input-search"
+            placeholder="Add number or name ex:pikachu"
+          />
+          <button class="btn-search">Search</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <!-- <div class="card dex d-1">
+        <img
+          class="pokemon"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
+        />
+        <img
+          class="pokemon"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/3.png"
+        />
+
+        <div class="card-title">No.003 venusaur</div>
+        <div class="card-types">
+          <label class="grass">GRASS</label>
+          <label class="poison">POISON</label>
+        </div>
+        <div class="card-content">
+          <div class="left">
+            <span>HP</span>
+            <span>ATK</span>
+            <span>DEF</span>
+            <span>SP.ATK</span>
+            <span>SP.DEF</span>
+            <span>SPEED</span>
+          </div>
+
+          <div class="w3-progress">
+            <div class="w3-light-grey">
+              <div class="w3-red w3-center" style="height:24px;width:25%">
+                25
+              </div>
+            </div>
+            <br />
+            <div class="w3-light-grey">
+              <div class="w3-orange" style="height:24px;width:50%"></div>
+            </div>
+            <br />
+            <div class="w3-light-grey">
+              <div class="w3-yellow" style="height:24px;width:75%"></div>
+            </div>
+            <br />
+            <div class="w3-light-grey">
+              <div class="w3-blue" style="height:24px;width:75%"></div>
+            </div>
+            <br />
+            <div class="w3-light-grey">
+              <div class="w3-green" style="height:24px;width:75%"></div>
+            </div>
+            <br />
+            <div class="w3-light-grey">
+              <div class="w3-pink" style="height:24px;width:75%"></div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+      var pokeURL = `https://pokeapi.co/api/v2/ability/2/`;
+      $.ajax({
+        url: pokeURL,
+        type: "get",
+        dataType: "json",
+        success: function(data) {
+          console.log(data);
+        }
+      });
+      for (let i = 0; i < 3; i++) {
+        var rand = Math.floor(Math.random() * 721);
+        console.log(rand);
+        var pokeURL = `https://pokeapi.co/api/v2/pokemon/${rand}/`;
+        $.ajax({
+          url: pokeURL,
+          type: "get",
+          dataType: "json",
+          success: function(data) {
+            // console.log(data.types[0].type.name);
+            $(".wrap").append(`
+          <div class="card dex d-${i + 1}">
+            <img class="pokemon" src="${data.sprites.front_default}" />
+            <img class="pokemon" src="${data.sprites.front_shiny}" />
+            <div class="card-title">
+              No.${data.id} ${data.name}
+            </div>
+            ${
+              data.types.length == "2"
+                ? `<div class="card-types">
+              <label class="${data.types[0].type.name}">
+              ${data.types[0].type.name.toLocaleUpperCase()}</label>
+              <label class="${data.types[1].type.name}">
+              ${data.types[1].type.name.toLocaleUpperCase()}</label>
+            </div>
+            `
+                : `
+            <div class="card-types">
+              <label class="${data.types[0].type.name}">
+              ${data.types[0].type.name.toLocaleUpperCase()}</label>
+            </div>
+            `
+            }
+
+            <div class="pokemon-stat">
+              <span>HP</span>
+              <span>ATK</span>
+              <span>DEF</span>
+              <span>SP.ATK</span>
+              <span>SP.DEF</span>
+              <span>SPEED</span>
+            </div>
+
+            <div class="card-content">
+                <div class="w3-progress">
+                  <div class="w3-light-grey">
+                    <div class="w3-red w3-center" style="height:24px;width:${
+                      data.stats[0].base_stat
+                    }%">${data.stats[0].base_stat}</div>
+                  </div><br>
+                  <div class="w3-light-grey">
+                    <div class="w3-orange w3-center" style="height:24px;width:${
+                      data.stats[1].base_stat
+                    }%">${data.stats[1].base_stat}</div>
+                  </div><br>
+                  <div class="w3-light-grey">
+                    <div class="w3-yellow w3-center" style="height:24px;width:${
+                      data.stats[2].base_stat
+                    }%">${data.stats[2].base_stat}</div>
+                  </div><br>
+                  <div class="w3-light-grey">
+                    <div class="w3-blue w3-center" style="height:24px;width:${
+                      data.stats[3].base_stat
+                    }%">${data.stats[3].base_stat}</div>
+                  </div><br>
+                  <div class="w3-light-grey">
+                    <div class="w3-green w3-center" style="height:24px;width:${
+                      data.stats[4].base_stat
+                    }%">${data.stats[4].base_stat}</div>
+                  </div><br>
+                  <div class="w3-light-grey">
+                    <div class="w3-pink w3-center" style="height:24px;width:${
+                      data.stats[5].base_stat
+                    }%">${data.stats[5].base_stat}</div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        `);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

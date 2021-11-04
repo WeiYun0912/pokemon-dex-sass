@@ -1,0 +1,148 @@
+@import "config";
+@import "header";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  background-image: url(../img/bk.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+label {
+  width: 75px;
+  display: inline-block;
+}
+
+.wrap {
+  margin: 0 auto;
+  display: grid;
+  width: 1440px;
+  grid-template-columns: repeat(12, $grid-column);
+  grid-template-rows: repeat(14, $grid-row);
+}
+
+.wallpaper {
+  grid-row: 1/7;
+  grid-column: 1/13;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  top: $grid-row * 0.5;
+}
+
+.card {
+  border: $color-dark 5px solid;
+  border-radius: 3px;
+  padding: 6rem 1rem;
+  background-image: url(../img/pokedex.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  //   position: relative;
+  .pokemon {
+    width: 150px;
+    height: 150px;
+  }
+
+  .card-title {
+    font-size: 2rem;
+  }
+  .card-content {
+    font-size: 1rem;
+  }
+
+  .card-types {
+    padding: 1rem 0;
+
+    & > label {
+      padding: 0.5rem 0;
+      border-radius: 10px;
+      // font-size: 1.1rem;
+      text-align: center;
+      color: $color-white;
+      outline: none;
+      border: none;
+      transition: all 0.3s;
+      text-shadow: black 0.1em 0.1em 0.2em;
+    }
+  }
+
+  .pokemon-stat {
+    width: 10%;
+    display: grid;
+    grid-template-rows: repeat(7, 46px);
+    position: absolute;
+    padding: 0rem 0.3rem;
+  }
+
+  //index card
+  &.c-1 {
+    grid-row: 8/14;
+    grid-column: 1/4;
+  }
+
+  &.c-2 {
+    grid-row: 8/14;
+    grid-column: 5/8;
+    position: relative;
+    left: $grid-column * 0.5;
+  }
+
+  &.c-3 {
+    grid-row: 8/14;
+    grid-column: 10/13;
+  }
+
+  //dex card
+  &.dex {
+    padding: 12rem 1rem;
+  }
+
+  .w3-progress {
+    width: 80%;
+    float: right;
+    overflow: hidden;
+    font-weight: 700;
+  }
+  &.d-1 {
+    grid-row: 2/11;
+    grid-column: 1/4;
+  }
+
+  &.d-2 {
+    grid-row: 2/11;
+    grid-column: 5/8;
+    position: relative;
+    left: $grid-column * 0.5;
+  }
+
+  &.d-3 {
+    grid-row: 2/11;
+    grid-column: 10/13;
+  }
+}
+
+.footer {
+  background: $color-danger;
+  height: 120px;
+  .footer-warp {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(1, 120px);
+
+    .footer-pokemon {
+      grid-column: 1/2;
+      margin: 0 auto;
+      & > img {
+        width: 120px;
+        height: 100px;
+      }
+    }
+  }
+}
